@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // <-- IMPORT MANQUANT AJOUTÉ
-import { RouterOutlet } from '@angular/router';
-import { AuthService } from './services/auth.service';
 import { FormsModule } from '@angular/forms';
-import {AnimatedBackgroundComponent} from './components/animated-background/animated-background.component';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-main',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, AnimatedBackgroundComponent],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [CommonModule, FormsModule],
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css']
 })
-export class AppComponent {
+export class MainComponent {
   username = '';
   password = '';
   errorMessage = '';
@@ -21,6 +20,7 @@ export class AppComponent {
 
   login() {
     const role = this.authService.login(this.username, this.password);
+
     if (role === 'admin') {
       this.router.navigate(['/admin']);
     } else if (role === 'prof') {
@@ -28,7 +28,7 @@ export class AppComponent {
     } else if (role === 'student') {
       this.router.navigate(['/student']);
     } else {
-      this.errorMessage = 'Nom d\'utilisateur ou mot de passe incorrect';
+      this.errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
     }
   }
 }

@@ -1,0 +1,65 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>Détails du Professeur</h2>
+
+  <div mat-dialog-content>
+    <div class="profile-header">
+      <img [src]="data.image" alt="Photo" class="profile-image">
+      <div class="profile-info">
+        <h3>{{ data.prenom }} {{ data.nom }}</h3>
+        <p>{{ data.matiere }}</p>
+      </div>
+    </div>
+
+    <div class="details-grid">
+      <div class="detail-item">
+        <mat-icon>person</mat-icon>
+        <span>CIN : {{ data.CIN }}</span>
+      </div>
+
+      <div class="detail-item">
+        <mat-icon>event</mat-icon>
+        <span>Naissance : {{ data.dateNaissance | date:'dd/MM/yyyy' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <mat-icon>work</mat-icon>
+        <span>Expérience : {{ data.experience }} ans</span>
+      </div>
+
+      <div class="detail-item">
+        <mat-icon>mail</mat-icon>
+        <span><a href="mailto:{{ data.email }}">{{ data.email }}</a></span>
+      </div>
+
+      <div class="detail-item">
+        <mat-icon>phone</mat-icon>
+        <span>{{ data.telephone }}</span>
+      </div>
+
+      <div class="detail-item full-width">
+        <mat-icon>home</mat-icon>
+        <span>{{ data.adresse }}</span>
+      </div>
+
+      <div class="detail-item">
+        <mat-icon>event_available</mat-icon>
+        <span>Début contrat : {{ data.date_debut_contrat | date:'dd/MM/yyyy' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <mat-icon>event_busy</mat-icon>
+        <span>Fin contrat : {{ data.date_fin_contrat | date:'dd/MM/yyyy' }}</span>
+      </div>
+
+      <div class="detail-item full-width">
+        <mat-icon>schedule</mat-icon>
+        <span>Disponibilités : {{ data.disponibilite.join(', ') }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Fermer</button>
+    <button mat-button color="primary" (click)="editProfesseur()">Modifier</button>
+  </div>
+</div>

@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --mobile-breakpoint: 768px;
+  --tablet-breakpoint: 1024px;
+}
+
+/* Mobile-First */
+.container {
+  padding: 15px;
+  @media (min-width: var(--tablet-breakpoint)) {
+    padding: 30px;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+}
+
+.mat-mdc-dialog-panel.cdk-overlay-pane {
+  --mat-dialog-container-max-width: 70vw !important;
+  --mat-dialog-container-min-width: 300px !important;
+  max-width: 70vw !important; /* Redondance pour certains navigateurs */
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  background: #FFFFFF88;
+}

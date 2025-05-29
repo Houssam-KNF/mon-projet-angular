@@ -1,0 +1,86 @@
+.calendar-container {
+  max-width: 600px;
+  max-height: 600px;
+  margin: auto;
+  padding: 1rem;
+  background: #ffffffbb;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  padding: 0 1rem;
+}
+
+.day-header {
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: bold;
+  color: #666;
+}
+
+.day-cell {
+  position: relative;
+  aspect-ratio: 1.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.day-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.day-cell:hover .day-circle {
+  background: #e3f2fd;
+  transform: scale(1.1);
+}
+
+.day-cell.today .day-circle {
+  background: #2196f3;
+  color: white;
+}
+
+.day-cell.selected .day-circle {
+  background: #1565c0;
+  color: white;
+}
+
+.disabled {
+  opacity: 0.4;
+}
+
+.note-indicator {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  color: #f44336;
+  font-size: 24px;
+}
+
+.hover-actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 5px;
+}

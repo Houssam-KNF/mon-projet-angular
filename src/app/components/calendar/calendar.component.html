@@ -1,0 +1,37 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button mat-icon-button (click)="previousMonth()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <h2>{{ currentMonth | date:'MMMM yyyy':'fr-FR' | titlecase }}</h2>
+
+    <button mat-icon-button (click)="nextMonth()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="calendar-grid">
+    <div *ngFor="let day of weekDays" class="day-header">{{ day }}</div>
+
+    <div *ngFor="let date of calendar"
+         class="day-cell"
+         [class.disabled]="!isCurrentMonth(date)"
+         [class.today]="isToday(date)"
+         [class.selected]="isSelected(date)"
+         (click)="selectDate(date)"
+         (mouseenter)="hoverDate = date"
+         (mouseleave)="hoverDate = null">
+
+      <div class="day-circle">
+        {{ date.getDate() }}
+        <span *ngIf="hasNotes(date)" class="note-indicator">•</span>
+      </div>
+
+      <div *ngIf="hoverDate === date" class="hover-actions">
+        <button mat-icon-button (click)="openNoteDialog(date); $event.stopPropagation()">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

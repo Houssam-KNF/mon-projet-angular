@@ -1,0 +1,88 @@
+:root {
+  --picton-blue: #15B5FFff;
+  --columbia-blue: #C9F0FFff;
+}
+.main-container {
+  display: flex;
+  height: 100vh;
+  color: #383838ff;
+  font-family: Arial, sans-serif;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.left-section {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  max-width: 50%;
+}
+
+#logo {
+  font-size: 80px;
+  font-family: 'Righteous', cursive;
+  margin: 10px;
+  background: linear-gradient(90deg, #efefefff, #C9F0FFff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text; /* Pour compatibilité avec Firefox */
+  color: transparent;
+}
+
+.tagline {
+  font-size: 25px;
+  font-family: 'Open Sans', sans-serif;
+  max-width: 70%;
+  color: #383838ff;
+}
+
+.right-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-left: 50%;
+  margin-right: 5%;
+}
+
+.login-box {
+  background-color: rgba(201, 240, 255, 0.2);
+  padding: 30px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  width: 300px;
+
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #15B5FFff;
+}
+
+.login-box input {
+  display: block;
+  margin-bottom: 15px;
+  width: 83%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.login-box button {
+  padding: 10px;
+  width: 90%;
+  background-color: #15B5FFff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.language-switcher {
+  margin-top: 15px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background: linear-gradient(90deg, #15B5FF22, #C9F0FF22);
+}

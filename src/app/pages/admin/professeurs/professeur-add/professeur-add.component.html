@@ -1,0 +1,127 @@
+<h2 mat-dialog-title>Nouveau Professeur</h2>
+
+<div mat-dialog-content class="dialog-content">
+  <form [formGroup]="profForm" class="form-container">
+
+    <!-- Section Avatar -->
+    <div class="avatar-section">
+      <div class="avatar-preview">
+        <img [src]="imagePreview" alt="Avatar Preview">
+      </div>
+      <input type="file" #fileInput (change)="onFileSelected($event)" hidden accept="image/*">
+      <button mat-stroked-button type="button" (click)="fileInput.click()">
+        <mat-icon>upload</mat-icon> Choisir une image
+      </button>
+    </div>
+
+    <!-- Section Informations -->
+    <div class="form-grid">
+      <!-- Colonne Gauche -->
+      <div class="form-column">
+        <h3>Informations Personnelles</h3>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="nom" required (input)="generateCredentials()">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Prénom</mat-label>
+          <input matInput formControlName="prenom" required (input)="generateCredentials()">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Date de naissance</mat-label>
+          <input matInput [matDatepicker]="birthDatePicker" formControlName="dateNaissance">
+          <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #birthDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>CIN</mat-label>
+          <input matInput formControlName="CIN" required maxlength="8" (input)="generatedPassword">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>RIB</mat-label>
+        <input matInput formControlName="RIB" required>
+        <mat-hint align="end" *ngIf="profForm.get('RIB')?.valid">
+          <mat-icon>check_circle</mat-icon> Format RIB valide
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+      </mat-form-field>
+
+      <!-- Colonne Droite -->
+      <div class="form-column">
+        <h3>Détails Professionnels</h3>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Matière</mat-label>
+          <mat-select formControlName="matiere" required>
+            <mat-option *ngFor="let matiere of matieres" [value]="matiere">{{ matiere }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="date-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Début contrat</mat-label>
+            <input matInput [matDatepicker]="startDatePicker" formControlName="dateDebutContrat">
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Fin contrat</mat-label>
+            <input matInput [matDatepicker]="endDatePicker" formControlName="dateFinContrat">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Expérience (années)</mat-label>
+          <input matInput type="number" formControlName="experience" min="0">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Téléphone</mat-label>
+          <input matInput formControlName="telephone" required>
+          <mat-hint align="end" *ngIf="profForm.get('telephone')?.valid">
+            <mat-icon>check_circle</mat-icon> Format téléphone valide
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Section Identifiants -->
+    <div class="credentials-section">
+      <h3>Identifiants Générés</h3>
+      <div class="credentials-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Nom d'utilisateur</mat-label>
+          <input matInput [value]="generatedUsername" readonly>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput [value]="generatedPassword" readonly>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions class="dialog-actions">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-raised-button
+          color="primary"
+          (click)="onSubmit()"
+          [disabled]="!profForm.valid">
+    <mat-icon>save</mat-icon> Enregistrer
+  </button>
+</div>
